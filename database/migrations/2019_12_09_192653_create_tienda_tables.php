@@ -17,6 +17,7 @@ class CreateTiendaTables extends Migration
             $table->increments('id');
             $table->string('nombre',60);
             $table->string('descripcion',255);
+            $table->string('rutaFoto',255);
             $table->timestamps();
         });
     }
