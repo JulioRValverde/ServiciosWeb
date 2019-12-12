@@ -20,3 +20,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('productos', 'api\ProductoController');
 Route::apiResource('tiendas', 'api\TiendaController');
 Route::apiResource('categorias', 'api\CategoriaController');
+
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
+});
