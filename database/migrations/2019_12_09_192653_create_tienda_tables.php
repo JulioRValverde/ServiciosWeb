@@ -16,6 +16,7 @@ class CreateTiendaTables extends Migration
         Schema::create('tiendas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre',60);
+            $table->string('descripcion',255);
             $table->timestamps();
         });
     }

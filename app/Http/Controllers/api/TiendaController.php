@@ -17,7 +17,7 @@ class TiendaController extends Controller
     {
         $tiendas = Tienda::orderBy('nombre', 'asc')->get();
 
-        return response()->json(['data' => $tiendas[0]->productos], 200);
+        return response()->json(['data' => $tiendas], 200);
     }
 
     /**
@@ -47,9 +47,15 @@ class TiendaController extends Controller
      * @param  \App\Tienda  $tienda
      * @return \Illuminate\Http\Response
      */
-    public function show(Tienda $tienda)
+    public function show($id)
     {
-        //
+        $tienda = Tienda::where('id',$id)->get();
+        $products = $tienda[0]->productos;
+        for ($i=0; $i <count($products) ; $i++) { 
+            $products[$i]->categoria;
+        }
+
+        return response()->json(['data' => $products], 200);
     }
 
     /**
