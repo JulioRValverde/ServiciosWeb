@@ -15,13 +15,16 @@ class CategoriasTableSeeder extends Seeder
     {
         DB::table('categorias')->delete();
         App\Categoria::create([
-        'nombre' => 'Deporte',
+        'nombre' => 'Deportivos',
         ]);
         App\Categoria::create([
-            'nombre' => 'Playa',
+            'nombre' => 'Casuales',
         ]);
         App\Categoria::create([
             'nombre' => 'Personalizado',
+        ]);
+        App\Categoria::create([
+            'nombre' => 'Clasicos',
         ]);
 
     }

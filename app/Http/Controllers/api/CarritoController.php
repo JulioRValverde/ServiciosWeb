@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\CarritoProducto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class CarritoController extends Controller
 {
@@ -25,7 +26,8 @@ class CarritoController extends Controller
      */
     public function create()
     {
-        //
+        $product = CarritoProducto::create($request->all());
+        return response()->json(['data' => $product], 201);
     }
 
     /**
@@ -36,8 +38,8 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
-        $product = CarritoProducto::create($request->all());
 
+        $product = CarritoProducto::create($request->all());
         return response()->json(['data' => $product], 201);
     }
 
@@ -47,10 +49,17 @@ class CarritoController extends Controller
      * @param  \App\CarritoProducto  $carritoProducto
      * @return \Illuminate\Http\Response
      */
-    public function show(CarritoProducto $carritoProducto)
+    public function show($id)
     {
-        //
+        $products = DB::table('carrito_productos')->where('carrito_id',$id)
+            ->join('productos', 'productos.id', '=', 'carrito_productos.producto_id')
+            ->select('productos.*')
+            ->get();
+            
+
+        return response()->json(['data' => $products], 200);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -84,5 +93,14 @@ class CarritoController extends Controller
     public function destroy(CarritoProducto $carritoProducto)
     {
         //
+    }
+
+    public function agregar(Request $request)
+    {
+        DB::table('carrito_productos')->insert($request->all(
+
+        )
+            
+        );
     }
 }

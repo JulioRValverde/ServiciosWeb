@@ -20,6 +20,12 @@ use Illuminate\Http\Request;
 Route::apiResource('productos', 'api\ProductoController');
 Route::apiResource('tiendas', 'api\TiendaController');
 Route::apiResource('categorias', 'api\CategoriaController');
+Route::apiResource('carritos', 'api\CarritoController');
+Route::post('agregar', 'api\CarritoController@agregar');
+
+
+
+
 
 Route::group([
 

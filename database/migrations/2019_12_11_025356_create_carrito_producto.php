@@ -17,7 +17,7 @@ class CreateCarritoProducto extends Migration
             $table->increments('id');
             $table->unsignedInteger('carrito_id');
             $table->unsignedInteger('producto_id');
-            $table->integer('cantidad');
+            $table->integer('cantidad')->default(1);
             $table->timestamps();
         });
     }

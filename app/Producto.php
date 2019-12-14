@@ -21,7 +21,7 @@ class Producto extends Model
     
     public function carritos()
     {
-        return $this->belongsToMany('App\Carrito', 'carrito_id');
+        return $this->belongsToMany('App\CarritoProducto', 'carrito_id');
     }
        
 }
