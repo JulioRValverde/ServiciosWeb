@@ -22,7 +22,7 @@ Route::apiResource('tiendas', 'api\TiendaController');
 Route::apiResource('categorias', 'api\CategoriaController');
 Route::apiResource('carritos', 'api\CarritoController');
 Route::post('agregar', 'api\CarritoController@agregar');
-Route::post('registro', 'AuthController@signup');
+Route::post('registro', 'AuthController@registro');
 
 
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 use App\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SignUpRequest;
 use App\User;
 use Illuminate\Support\Facades\DB;
 
@@ -90,6 +89,13 @@ class AuthController extends Controller
     }
 
     public function signup(Request $request)
+    {
+        $user = User::create($request->all());
+                Carrito::create($user->id);
+        return $this->login($request);
+    }
+
+    public function registro(Request $request)
     {
         $user = User::create($request->all());
                 Carrito::create($user->id);
