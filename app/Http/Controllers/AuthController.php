@@ -7,6 +7,7 @@ use App\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SignUpRequest;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 
 class AuthController extends Controller
