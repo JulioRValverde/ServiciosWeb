@@ -88,17 +88,19 @@ class AuthController extends Controller
         ]);
     }
 
-    public function signup(Request $request)
+    public function registro(Request $request)
     {
-        $user = User::create($request->all());
-                Carrito::create($user->id);
+        $email = $request->input('email');
+        $name = $request->input('name');
+        $password = $request->input('password');
+        $user = table('users')->insert([
+            'name' => $name,
+            'email'=> $email,
+            'password' => Hash::make($password)
+            ]);
+               
         return $this->login($request);
     }
 
-    public function registro(Request $request)
-    {
-        
-        DB::table('users')->insert($request->all());
-        return $this->login($request);
-    }
+    
 }
