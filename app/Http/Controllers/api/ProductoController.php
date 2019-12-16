@@ -58,9 +58,12 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show($id)
     {
-        return response()->json(['data' => $product], 200);
+        $producto = Producto::where('id',$id)->get();
+         
+
+        return response()->json(['data' => $producto], 200);
     }
 
     /**

@@ -51,7 +51,7 @@ class CarritoController extends Controller
      */
     public function show($id)
     {
-        $products = DB::table('carrito_productos')->where('carrito_id',$id)
+        $products = DB::table('carrito_productos')->where('carrito_id',$id)->where('estado','agregado')
             ->join('productos', 'productos.id', '=', 'carrito_productos.producto_id')
             ->select('productos.*','carrito_productos.id as carprodu')
             ->get();
@@ -107,5 +107,35 @@ class CarritoController extends Controller
        
        
     }
+
+    public function comprar(Request $request)
+    {
+        $id = $request->input('carrito_producto');
+        $precio = $request->input('costo');
+        $cantidad = $request->input('cantidad');
+        DB::table('carrito_productos')->where('id',$id)->update(
+            ['estado'=>'comprado','cantidad'=>$cantidad,'precio'=>$precio]
+        );
+    }
+    
+    public function cuenta(Request $request)
+    {
+        $id = $request->input('id');
+        $products = DB::table('carrito_productos')->where('carrito_id',$id)->where('estado','comprado')
+            ->join('productos', 'productos.id', '=', 'carrito_productos.producto_id')
+            ->select('productos.*','carrito_productos.cantidad','carrito_productos.precio as total')
+            ->get();
+            
+
+        return response()->json(['data' => $products], 200);
+    }
+
+    public function valor(Request $request)
+    {
+        $id = $request->input('id');
+        $precio = DB::table('carrito_productos')->where('carrito_id',$id)->sum('precio');
+        return response()->json(['data' => $precio], 200);
+    }
+    
     
 }
