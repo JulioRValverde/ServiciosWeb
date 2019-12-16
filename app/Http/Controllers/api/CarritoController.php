@@ -53,7 +53,7 @@ class CarritoController extends Controller
     {
         $products = DB::table('carrito_productos')->where('carrito_id',$id)
             ->join('productos', 'productos.id', '=', 'carrito_productos.producto_id')
-            ->select('productos.*')
+            ->select('productos.*','carrito_productos.id as carprodu')
             ->get();
             
 
@@ -97,10 +97,15 @@ class CarritoController extends Controller
 
     public function agregar(Request $request)
     {
-        DB::table('carrito_productos')->insert($request->all(
-
-        )
-            
-        );
+        DB::table('carrito_productos')->insert($request->all());
     }
+
+    public function eliminar(Request $request)
+    {
+       $id = $request->input('carprodu');
+       DB::table('carrito_productos')->where('id',$id)->delete();
+       
+       
+    }
+    
 }

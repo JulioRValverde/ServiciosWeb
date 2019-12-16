@@ -18,6 +18,8 @@ class CreateCarritoProducto extends Migration
             $table->unsignedInteger('carrito_id');
             $table->unsignedInteger('producto_id');
             $table->integer('cantidad')->default(1);
+            $table->float('precio',8,2)->default(0);
+            $table->string('estado')->default('agregado');
             $table->timestamps();
         });
     }
