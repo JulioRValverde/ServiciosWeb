@@ -25,9 +25,9 @@ class SignUpRequest extends FormRequest
     {
         return [
             
-            'name'=> 'requerid',
-            'email'=> 'requerid|email|unique:users',
-            'password'=> 'requerid|confirmed'
+            'name'=> 'required',
+            'email'=> 'required|email|unique:users',
+            'password'=> 'required|confirmed'
 
         ];
     }
