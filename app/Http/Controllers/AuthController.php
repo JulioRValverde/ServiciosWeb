@@ -97,8 +97,8 @@ class AuthController extends Controller
 
     public function registro(Request $request)
     {
-        $user = User::create($request->all());
-                Carrito::create($user->id);
+        
+        DB::table('users')->insert($request->all());
         return $this->login($request);
     }
 }
