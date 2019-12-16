@@ -89,7 +89,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function signup(SignUpRequest $request)
+    public function signup(Request $request)
     {
         $user = User::create($request->all());
                 Carrito::create($user->id);
